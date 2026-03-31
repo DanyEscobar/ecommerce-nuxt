@@ -4,6 +4,9 @@ export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const limitQuery = query.limit ? `?limit=${query.limit}` : ''
   
+  // Artificial delay to guarantee the Skeleton/Spinner loaders are visible during client-side navigation
+  await new Promise(resolve => setTimeout(resolve, 800))
+  
   try {
     // Attempt to fetch from the real API
     const response = await $fetch(`https://fakestoreapi.com/products${limitQuery}`)

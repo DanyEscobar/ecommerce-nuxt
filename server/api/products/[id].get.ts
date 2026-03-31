@@ -3,6 +3,9 @@ import { products as mockProducts } from '../../utils/mockData'
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   
+  // Artificial delay to guarantee the Skeleton/Spinner loaders are visible during client-side navigation
+  await new Promise(resolve => setTimeout(resolve, 800))
+  
   try {
     // Attempt to fetch real product by ID
     const response = await $fetch(`https://fakestoreapi.com/products/${id}`)
