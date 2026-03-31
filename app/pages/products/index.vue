@@ -127,6 +127,8 @@ const filteredProducts = computed(() => {
   align-items: center;
   justify-content: space-between;
   border-radius: var(--radius-lg);
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .mobile-select {
