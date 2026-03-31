@@ -134,7 +134,7 @@ ecommerce-nuxt/
 
 3. **Pinia:** Estándar de facto de Vue 3 para estado global. Separa la lógica de negocio (carrito, órdenes) de los componentes UI. Persistencia local simulada en `localStorage` en ambos stores (cart/orders), envuelta en tags `<ClientOnly>` para evitar errores de *Hydration Mismatch* nativos en SSR.
 
-4. **API Proxy & Resiliencia (Mock Fallback):** Se crearon rutas API nativas de backend (`/server/api`) desde Nitro. Estos actúan como un BFF (Backend-For-Frontend). Al solicitar datos, intentan consultar la *Fake Store API* e interceptan errores de conexión. Si la API falla, aplican un retraso simulado (800ms) para renderizar los *Skeletons Loaders* y despliegan la información estática documentada en el `JSON Mock` de respaldo. Esto garantiza que el evaluador pueda compilar el código sin errores de red en todo momento.
+4. **API Proxy & Resiliencia (Mock Fallback):** Se crearon rutas API nativas de backend (`/server/api`) desde Nitro. Estos actúan como un BFF (Backend-For-Frontend). Al solicitar datos, intentan consultar la *Fake Store API* e interceptan errores de conexión. Si la API falla, aplican un retraso simulado (300ms) para renderizar los *Skeletons Loaders* y despliegan la información estática documentada en el `JSON Mock` de respaldo. Esto garantiza que el evaluador pueda compilar el código sin errores de red en todo momento.
 
 5. **TypeScript estricto:** Interfaces `Product`, `Order` y `CartItem` tipadas explícitamente para autocompletado y prevención de errores.
 
