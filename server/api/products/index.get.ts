@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   const limitQuery = query.limit ? `?limit=${query.limit}` : ''
   
   // Artificial delay to guarantee the Skeleton/Spinner loaders are visible during client-side navigation
-  await new Promise(resolve => setTimeout(resolve, 800))
+  await new Promise(resolve => setTimeout(resolve, 300))
   
   try {
     // Attempt to fetch from the real API

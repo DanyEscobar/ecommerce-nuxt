@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   
   // Artificial delay to guarantee the Skeleton/Spinner loaders are visible during client-side navigation
-  await new Promise(resolve => setTimeout(resolve, 800))
+  await new Promise(resolve => setTimeout(resolve, 300))
   
   try {
     // Attempt to fetch real product by ID
