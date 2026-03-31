@@ -78,6 +78,24 @@ const ordersStore = useOrdersStore()
   text-align: left;
 }
 
+@media (min-width: 640px) {
+  .page-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .order-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .order-header .order-status {
+    text-align: right;
+  }
+}
+
 .empty-orders .icon {
   font-size: 4rem;
 }
@@ -86,6 +104,18 @@ const ordersStore = useOrdersStore()
   padding: 2rem;
   border-radius: var(--radius-lg);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+@media (min-width: 200px) {
+  .order-card {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .order-card {
+    padding: 2rem;
+  }
 }
 
 .order-card:hover {
@@ -118,6 +148,12 @@ const ordersStore = useOrdersStore()
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .items-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .item-row {
@@ -173,17 +209,7 @@ const ordersStore = useOrdersStore()
   gap: 0.25rem;
 }
 
-@media (min-width: 200px) {
-  .order-card {
-    padding: 1rem;
-  }
-}
-
 @media (min-width: 480px) {
-  .order-card {
-    padding: 2rem;
-  }
-
   .item-price-row {
     flex-direction: row;
     justify-content: space-between;
@@ -197,29 +223,5 @@ const ordersStore = useOrdersStore()
 
 .font-bold {
   font-weight: 700;
-}
-
-@media (min-width: 640px) {
-  .page-header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .order-header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .order-header .order-status {
-    text-align: right;
-  }
-}
-
-@media (min-width: 768px) {
-  .items-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 </style>

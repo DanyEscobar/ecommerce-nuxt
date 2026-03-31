@@ -5,6 +5,7 @@
   --surface-border: rgba(255, 255, 255, 0.1);
   --primary-color: #58a6ff; /* Vibrant blue */
   --primary-hover: #3182ce;
+  --text-black: black;
   --text-main: #e6edf3;
   --text-muted: #8b949e;
   --danger-color: #f85149;
@@ -188,6 +189,7 @@ a:hover {
 
 /* Utilities */
 .w-full { width: 100%; }
+.text-black { color: var(--text-black); }
 /* Typography Utilities */
 .text-xs { font-size: 0.75rem; line-height: 1rem; }
 .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
@@ -234,6 +236,7 @@ a:hover {
 .items-center { align-items: center; }
 .justify-between { justify-content: space-between; }
 .justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
 .gap-2 { gap: 0.5rem; }
 .gap-4 { gap: 1rem; }
 .gap-6 { gap: 1.5rem; }

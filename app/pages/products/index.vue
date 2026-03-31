@@ -5,8 +5,28 @@
       <p class="text-muted mt-2">Browse our entire collection</p>
     </div>
 
-    <!-- Categories Filter (Optional simple implementation) -->
-    <div class="filters glass mb-8 py-4 px-6 flex items-center gap-4">
+    <!-- Mobile Category Selector -->
+    <div class="mobile-filter glass mb-8">
+      <label for="mobile-category" class="font-medium text-muted">Category:</label>
+      <select 
+        id="mobile-category"
+        v-model="selectedCategory"
+        class="mobile-select capitalize cursor-pointer"
+      >
+        <option :value="null" class="text-black">All</option>
+        <option 
+          v-for="category in categories" 
+          :key="category" 
+          :value="category" 
+          class="capitalize select-option"
+        >
+          {{ category }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Desktop Categories Filter (hidden on mobile) -->
+    <div class="desktop-filters filters glass mb-8 py-4 px-6 items-center gap-4">
       <button 
         class="btn btn-outline" 
         :class="{ 'btn-primary': !selectedCategory }" 
@@ -56,7 +76,7 @@ import type { Product } from '~/types'
 const selectedCategory = ref<string | null>(null)
 
 // Nuxt useFetch will SSR these perfectly
-const { data: products, pending, error, refresh } = await useFetch<Product[]>('https://fakestoreapi.com/products', {
+const { data: products, pending, error, refresh } = await useFetch<Product[]>('/api/products', {
   lazy: true
 })
 
@@ -78,6 +98,7 @@ const filteredProducts = computed(() => {
   border-radius: var(--radius-lg);
   overflow-x: auto;
   flex-wrap: nowrap;
+  display: flex; /* Enforce flex for horizontal overflow */
   
   /* Hide scrollbar for a cleaner look */
   -ms-overflow-style: none;
@@ -100,8 +121,53 @@ const filteredProducts = computed(() => {
   height: 350px;
 }
 
-/* On larger screens, center the buttons and allow wrapping */
+/* Custom Responsive Styles (Since Tailwind utilities like md:hidden are not in main.css) */
+.mobile-filter {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--radius-lg);
+}
+
+.mobile-select {
+  background-color: transparent;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 0.4rem 0.8rem;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  text-align: right;
+  min-width: 140px;
+}
+
+.mobile-select:focus {
+  border-color: var(--primary-color);
+}
+
+.select-option {
+  color: #000;
+  background-color: #fff;
+}
+
+/* Desktop is hidden by default on small screens */
+.desktop-filters {
+  display: none;
+}
+
+/* On larger screens (md breakpoint) */
 @media (min-width: 768px) {
+  .mobile-filter {
+    display: none;
+  }
+
+  .desktop-filters {
+    display: flex;
+  }
+
   .filters {
     justify-content: center;
     flex-wrap: wrap;

@@ -38,6 +38,13 @@ const { toasts } = useToast()
   pointer-events: none;
 }
 
+@media (max-width: 480px) {
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
 
 .toast {
   display: flex;
@@ -54,6 +61,12 @@ const { toasts } = useToast()
   -webkit-backdrop-filter: blur(12px);
   min-width: 260px;
   max-width: 400px;
+}
+
+@media (max-width: 480px) {
+  .toast {
+    max-width: 100%;
+  }
 }
 
 .toast--success {
@@ -108,17 +121,5 @@ const { toasts } = useToast()
 
 .toast-move {
   transition: transform 0.3s ease;
-}
-
-@media (max-width: 480px) {
-  .toast-container {
-    left: 1rem;
-    right: 1rem;
-    bottom: 1rem;
-  }
-
-  .toast {
-    max-width: 100%;
-  }
 }
 </style>

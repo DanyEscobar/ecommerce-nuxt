@@ -8,7 +8,7 @@
 
     <div v-else-if="error || !product" class="error-message glass text-center py-8">
       <p class="text-danger h3">Product not found or failed to load.</p>
-      <NuxtLink to="/products" class="btn btn-primary mt-4">Browse Catalog</NuxtLink>
+      <NuxtLink to="/products" class="btn-link btn btn-primary mt-4">Browse Catalog</NuxtLink>
     </div>
 
     <div v-else class="product-container glass animate-fade-in">
@@ -68,7 +68,7 @@ const cartStore = useCartStore()
 const { addToast } = useToast()
 
 const productId = route.params.id as string
-const { data: product, pending, error } = await useFetch<Product>(`https://fakestoreapi.com/products/${productId}`, {
+const { data: product, pending, error } = await useFetch<Product>(`/api/products/${productId}`, {
   lazy: true
 })
 
@@ -89,12 +89,35 @@ const addToCart = () => {
   border-radius: var(--radius-lg);
 }
 
+.btn-link {
+  color: #fff;
+}
+
 .product-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-8);
   padding: var(--space-8);
   border-radius: var(--radius-lg);
+}
+
+@media (min-width: 200px) {
+  .product-container {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .product-container {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .product-container {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
 }
 
 .product-image-section {
@@ -165,17 +188,7 @@ const addToCart = () => {
   font-size: 1.1rem;
 }
 
-@media (min-width: 200px) {
-  .product-container {
-    padding: 1rem;
-  }
-}
-
 @media (min-width: 480px) {
-  .product-container {
-    padding: 2rem;
-  }
-
   .add-to-cart-container {
     flex-direction: row;
     align-items: center;
@@ -184,13 +197,6 @@ const addToCart = () => {
   .add-to-cart-container .btn-primary {
     flex-grow: 1;
     width: auto;
-  }
-}
-
-@media (min-width: 992px) {
-  .product-container {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
   }
 }
 </style>

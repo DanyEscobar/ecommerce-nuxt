@@ -53,6 +53,12 @@
   gap: var(--space-8);
 }
 
+@media (min-width: 768px) {
+  .footer-content {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
 .link-list {
   list-style: none;
   padding: 0;
@@ -86,11 +92,5 @@
   border-top: 1px solid var(--surface-border);
   padding-top: var(--space-6);
   text-align: center;
-}
-
-@media (min-width: 768px) {
-  .footer-content {
-    grid-template-columns: 2fr 1fr 1fr;
-  }
 }
 </style>

@@ -37,7 +37,7 @@
                 <button class="btn-plus btn btn-outline btn-sm" @click="updateQuantity(item.id, item.quantity + 1)">+</button>
               </div>
               
-              <div class="total-action flex items-center gap-4">
+              <div class="total-action flex items-center gap-4 justify-end">
                 <span class="item-total h4 mb-0">${{ (item.price * item.quantity).toFixed(2) }}</span>
                 <button class="btn btn-danger btn-sm" @click="removeFromCart(item.id)">
                   Remove
@@ -158,13 +158,29 @@ const checkout = () => {
   border-radius: var(--radius-lg);
 }
 
-.cart-header {
-  flex-wrap: wrap;
-  gap: 0.5rem;
+@media (min-width: 200px) {
+  .cart-items {
+    padding: 1rem;
+  }
+
+  .btn-less, .btn-plus {
+    padding: 0.5rem;
+  }
 }
 
-.total-action {
+@media (min-width: 480px) {
+  .cart-items {
+    padding: 2rem;
+  }
+  
+  .btn-less, .btn-plus {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.cart-header, .total-action {
   flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .cart-summary {
@@ -182,6 +198,22 @@ const checkout = () => {
   align-items: center;
 }
 
+@media (min-width: 480px) {
+  .cart-item {
+    grid-template-columns: 80px 1fr;
+    gap: 1rem 1.25rem;
+  }
+}
+
+/* Desktop: 3-column layout */
+@media (min-width: 640px) {
+  .cart-item {
+    grid-template-columns: 100px 2fr 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
 .item-image-wrapper {
   justify-self: center;
   width: 100px;
@@ -194,16 +226,31 @@ const checkout = () => {
   justify-content: center;
 }
 
+@media (min-width: 480px) {
+  .item-image-wrapper {
+    justify-self: stretch;
+    width: auto;
+  }
+}
+
 .item-image-wrapper img {
   max-height: 100%;
   object-fit: contain;
 }
 
-/* Mobile: actions span full width under image+details */
 .item-actions {
   grid-column: 1 / -1;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .item-actions {
+    grid-column: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+  }
 }
 
 .item-details h3 {
@@ -256,52 +303,5 @@ const checkout = () => {
 
 .capitalize {
   text-transform: capitalize;
-}
-
-/* Small tablets: image + details side-by-side, actions below */
-@media (min-width: 200px) {
-  .cart-items {
-    padding: 1rem;
-  }
-
-  .btn-less, .btn-plus {
-    padding: 0.5rem;
-  }
-}
-
-@media (min-width: 480px) {
-  .cart-items {
-    padding: 2rem;
-  }
-
-  .cart-item {
-    grid-template-columns: 80px 1fr;
-    gap: 1rem 1.25rem;
-  }
-
-  .item-image-wrapper {
-    justify-self: stretch;
-    width: auto;
-  }
-  
-  .btn-less, .btn-plus {
-    padding: 0.5rem 1rem;
-  }
-}
-
-/* Desktop: 3-column layout */
-@media (min-width: 640px) {
-  .cart-item {
-    grid-template-columns: 100px 2fr 1fr;
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
-
-  .item-actions {
-    grid-column: auto;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1rem;
-  }
 }
 </style>
