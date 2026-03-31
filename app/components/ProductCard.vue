@@ -21,7 +21,7 @@
       
       <div class="product-actions mt-4 flex items-center justify-between">
         <span class="price h3">${{ product.price.toFixed(2) }}</span>
-        <button @click="addToCart" class="btn btn-primary btn-sm add-to-cart-btn" aria-label="Add to Cart">
+        <button class="btn btn-primary btn-sm add-to-cart-btn" aria-label="Add to Cart" @click="addToCart">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             <line x1="12" y1="12" x2="12" y2="16"></line>
@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { type Product } from '~/types'
+import type { Product } from '~/types'
 import { useCartStore } from '~/stores/cart'
 
 const props = defineProps<{

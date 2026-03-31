@@ -31,7 +31,7 @@
     
     <div v-else-if="error" class="error-message glass text-center py-8">
       <p class="text-danger h3">Failed to load products.</p>
-      <button @click="() => refresh()" class="btn btn-primary mt-4">Try Again</button>
+      <button class="btn btn-primary mt-4" @click="() => refresh()">Try Again</button>
     </div>
     
     <div v-else-if="filteredProducts.length === 0" class="empty-state text-center py-16">
@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { type Product } from '~/types'
+import type { Product } from '~/types'
 
 const selectedCategory = ref<string | null>(null)
 

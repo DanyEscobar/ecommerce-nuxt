@@ -25,7 +25,7 @@
       
       <div v-else-if="error" class="error-message glass text-center py-8">
         <p class="text-danger h3">Failed to load products.</p>
-        <button @click="() => refresh" class="btn btn-primary mt-4">Try Again</button>
+        <button class="btn btn-primary mt-4" @click="() => refresh()">Try Again</button>
       </div>
       
       <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
