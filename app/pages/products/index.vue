@@ -75,7 +75,6 @@ import type { Product } from '~/types'
 
 const selectedCategory = ref<string | null>(null)
 
-// Nuxt useFetch will SSR these perfectly
 const { data: products, pending, error, refresh } = useFetch<Product[]>('/api/products', {
   lazy: true
 })
