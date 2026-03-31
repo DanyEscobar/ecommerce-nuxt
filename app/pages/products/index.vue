@@ -120,7 +120,6 @@ const filteredProducts = computed(() => {
   height: 350px;
 }
 
-/* Custom Responsive Styles (Since Tailwind utilities like md:hidden are not in main.css) */
 .mobile-filter {
   padding: 1rem;
   display: flex;
