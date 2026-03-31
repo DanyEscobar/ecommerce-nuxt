@@ -43,7 +43,7 @@
 <script setup lang="ts">
 import type { Product } from '~/types'
 
-const { data: products, pending, error, refresh } = await useFetch<Product[]>('/api/products?limit=4', {
+const { data: products, pending, error, refresh } = useFetch<Product[]>('/api/products?limit=4', {
   lazy: true
 })
 </script>

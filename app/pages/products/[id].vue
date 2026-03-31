@@ -68,7 +68,7 @@ const cartStore = useCartStore()
 const { addToast } = useToast()
 
 const productId = route.params.id as string
-const { data: product, pending, error } = await useFetch<Product>(`/api/products/${productId}`, {
+const { data: product, pending, error } = useFetch<Product>(`/api/products/${productId}`, {
   lazy: true
 })
 
