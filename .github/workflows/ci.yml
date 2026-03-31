@@ -28,9 +28,19 @@ jobs:
     - name: Build Nuxt Application
       run: npm run build
 
+    - name: Get Version
+      id: package-version
+      run: echo "project_version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+    - name: Simulated Deploy
+      run: |
+        echo "🚀 Starting simulated deployment for version ${{ steps.package-version.outputs.project_version }}..."
+        echo "📂 Deploying .output/ to simulated production server..."
+        echo "✅ Deployment successful! App available at: https://novashop-demo.simulated-deploy.com"
+
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: nuxt-build
+        name: nuxt-build-v${{ steps.package-version.outputs.project_version }}
         path: .output/
         retention-days: 1

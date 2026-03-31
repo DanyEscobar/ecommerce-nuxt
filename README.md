@@ -133,7 +133,7 @@ ecommerce-nuxt/
 
 7. **Responsive Design:** Enfoque mobile-first con breakpoints progresivos (480px → 640px → 992px). Layouts que se adaptan de stack vertical a grid multi-columna.
 
-8. **CI/CD:** Pipeline de GitHub Actions que instala dependencias y compila la app en cada push para garantizar estabilidad del build.
+8. **CI/CD:** Pipeline de GitHub Actions que realiza la instalación de dependencias (`npm install`), validación de tipos, compilación de la app (`npm run build`), **versionado automático** (extrayendo la versión de `package.json`) y un **deploy simulado** para garantizar la estabilidad del build en cada push.
 
 ---
 
