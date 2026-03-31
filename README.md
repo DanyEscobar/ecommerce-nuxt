@@ -8,13 +8,15 @@ Una plataforma web de e-commerce simplificada y enfocada en el frontend, constru
 
 ## ✨ Características
 
-- 📦 **Catálogo de productos** con filtrado por categoría y búsqueda
+- 📦 **Catálogo de productos** con filtrado responsivo (botones y `<select>`)
 - 🛒 **Carrito de compras** completo (agregar, actualizar cantidad, eliminar)
-- 📋 **Historial de órdenes** con persistencia en `localStorage`
+- 📋 **Historial de órdenes** y carrito con **persistencia** en `localStorage`
+- 🛡️ **Arquitectura de Resiliencia** (Proxy API con Fallback dinámico a Mock Data)
+- ⏳ **UX Premium de carga** (Skeleton Cards interactivos y animaciones de Spinner)
 - 🔔 **Notificaciones toast** animadas (éxito, error, info)
 - 📱 **Diseño 100% responsive** (mobile-first)
 - 🎨 **Glassmorphism UI** con tema oscuro, gradientes y micro-animaciones
-- ⚡ **SSR** con `useFetch` para carga óptima de datos
+- ⚡ **SSR** con `useFetch` y evasión estructurada de Hydration Mismatches
 - 🔍 **SEO-friendly** gracias al Server Side Rendering de Nuxt
 
 ---
@@ -64,7 +66,9 @@ ecommerce-nuxt/
 │   ├── components/
 │   │   ├── AppHeader.vue         # Navegación responsiva con menú hamburguesa
 │   │   ├── AppFooter.vue         # Pie de página
+│   │   ├── AppSpinner.vue        # Loader y spinner animado en CSS
 │   │   ├── ProductCard.vue       # Tarjeta de producto reutilizable
+│   │   ├── ProductCardSkeleton.vue # Cargador esqueleto con efecto Shimmer
 │   │   └── ToastNotifications.vue # Sistema de notificaciones toast
 │   ├── composables/
 │   │   └── useToast.ts           # Composable global para notificaciones
@@ -82,6 +86,11 @@ ecommerce-nuxt/
 │   │   └── orders.ts             # Store Pinia — órdenes
 │   └── types/
 │       └── index.ts              # Interfaces TypeScript (Product, Order, etc.)
+├── server/
+│   ├── api/
+│   │   └── products/             # Rutas Proxy API (Endpoints Nitro backend)
+│   └── utils/
+│       └── mockData.ts           # Catálogo Mock JSON de respaldo (Fallback)
 ├── .github/workflows/ci.yml      # Pipeline CI (GitHub Actions)
 ├── nuxt.config.ts                 # Configuración de Nuxt
 ├── package.json
@@ -123,9 +132,9 @@ ecommerce-nuxt/
 
 2. **Estilado (Vanilla CSS + Glassmorphism):** Sistema de diseño propio sin dependencia de utilidades como TailwindCSS. Variables CSS en `:root`, tema oscuro, utilidades flex/grid reutilizables y efectos `backdrop-filter`.
 
-3. **Pinia:** Estándar de facto de Vue 3 para estado global. Separa la lógica de negocio (carrito, órdenes) de los componentes UI. Persistencia local simulada en `localStorage`.
+3. **Pinia:** Estándar de facto de Vue 3 para estado global. Separa la lógica de negocio (carrito, órdenes) de los componentes UI. Persistencia local simulada en `localStorage` en ambos stores (cart/orders), envuelta en tags `<ClientOnly>` para evitar errores de *Hydration Mismatch* nativos en SSR.
 
-4. **Fake Store API:** Fuente de datos externa consumida vía `useFetch` para aprovechar el pipeline SSR de Nuxt con estados de carga (skeletons).
+4. **API Proxy & Resiliencia (Mock Fallback):** Se crearon rutas API nativas de backend (`/server/api`) desde Nitro. Estos actúan como un BFF (Backend-For-Frontend). Al solicitar datos, intentan consultar la *Fake Store API* e interceptan errores de conexión. Si la API falla, aplican un retraso simulado (800ms) para renderizar los *Skeletons Loaders* y despliegan la información estática documentada en el `JSON Mock` de respaldo. Esto garantiza que el evaluador pueda compilar el código sin errores de red en todo momento.
 
 5. **TypeScript estricto:** Interfaces `Product`, `Order` y `CartItem` tipadas explícitamente para autocompletado y prevención de errores.
 

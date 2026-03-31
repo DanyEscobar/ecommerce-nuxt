@@ -4,7 +4,7 @@
       ← Back
     </button>
 
-    <div v-if="pending" class="skeleton details-skeleton"></div>
+    <AppSpinner v-if="pending" text="Loading product details..." />
 
     <div v-else-if="error || !product" class="error-message glass text-center py-8">
       <p class="text-danger h3">Product not found or failed to load.</p>

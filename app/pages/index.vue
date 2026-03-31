@@ -20,7 +20,7 @@
       </div>
 
       <div v-if="pending" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
-        <div v-for="i in 4" :key="i" class="skeleton"></div>
+        <ProductCardSkeleton v-for="i in 4" :key="i" />
       </div>
       
       <div v-else-if="error" class="error-message glass text-center py-8">
