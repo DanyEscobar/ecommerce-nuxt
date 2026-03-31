@@ -68,7 +68,9 @@ const cartStore = useCartStore()
 const { addToast } = useToast()
 
 const productId = route.params.id as string
-const { data: product, pending, error } = await useFetch<Product>(`https://fakestoreapi.com/products/${productId}`)
+const { data: product, pending, error } = await useFetch<Product>(`https://fakestoreapi.com/products/${productId}`, {
+  lazy: true
+})
 
 const quantity = ref(1)
 

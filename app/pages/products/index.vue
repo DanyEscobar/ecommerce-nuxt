@@ -56,7 +56,9 @@ import { type Product } from '~/types'
 const selectedCategory = ref<string | null>(null)
 
 // Nuxt useFetch will SSR these perfectly
-const { data: products, pending, error, refresh } = await useFetch<Product[]>('https://fakestoreapi.com/products')
+const { data: products, pending, error, refresh } = await useFetch<Product[]>('https://fakestoreapi.com/products', {
+  lazy: true
+})
 
 // Extract unique categories
 const categories = computed(() => {

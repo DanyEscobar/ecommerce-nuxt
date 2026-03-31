@@ -43,7 +43,9 @@
 <script setup lang="ts">
 import type { Product } from '~/types'
 
-const { data: products, pending, error, refresh } = await useFetch<Product[]>('https://fakestoreapi.com/products?limit=4')
+const { data: products, pending, error, refresh } = await useFetch<Product[]>('https://fakestoreapi.com/products?limit=4', {
+  lazy: true
+})
 </script>
 
 <style scoped>
