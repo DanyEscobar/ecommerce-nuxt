@@ -13,9 +13,6 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     console.warn(`FakeStoreAPI failed for product ${id}, falling back to mock data.`, error)
     
-    // Artificial delay to allow UI spinner to show
-    await new Promise(resolve => setTimeout(resolve, 300))
-    
     const product = mockProducts.find(p => p.id === Number(id))
     if (!product) {
       throw createError({
